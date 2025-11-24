@@ -59,8 +59,8 @@ export default function Navbar() {
             Portfolio
           </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center space-x-1 absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map((link) => (
               <motion.a
                 key={link.href}
@@ -73,11 +73,14 @@ export default function Navbar() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
+          </div>
 
+          {/* Right side - Theme Toggle & CTA */}
+          <div className="hidden md:flex items-center space-x-2">
             {/* Theme Toggle */}
             <motion.button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="ml-2 p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all hover:shadow-glow"
+              className="p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all hover:shadow-glow"
               whileHover={{ scale: 1.05, rotate: 180 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -95,7 +98,7 @@ export default function Navbar() {
 
             <motion.a
               href="#contact"
-              className="ml-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg hover:shadow-glow transition-all duration-300 relative overflow-hidden group"
+              className="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold shadow-lg hover:shadow-glow transition-all duration-300 relative overflow-hidden group"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
