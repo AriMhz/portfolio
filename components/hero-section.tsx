@@ -117,9 +117,8 @@ export default function HeroSection() {
           <motion.div
             className="relative h-[500px] hidden lg:block"
             initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            viewport={{ once: false, amount: 0.3 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-[100px] opacity-50"></div>
 
