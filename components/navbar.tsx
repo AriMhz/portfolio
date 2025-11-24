@@ -75,21 +75,23 @@ export default function Navbar() {
             ))}
 
             {/* Theme Toggle */}
-            {mounted && (
-              <motion.button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="ml-2 p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all hover:shadow-glow"
-                whileHover={{ scale: 1.05, rotate: 180 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                {theme === "dark" ? (
+            <motion.button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="ml-2 p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all hover:shadow-glow"
+              whileHover={{ scale: 1.05, rotate: 180 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              {mounted ? (
+                theme === "dark" ? (
                   <Sun className="w-5 h-5 text-yellow-400" />
                 ) : (
                   <Moon className="w-5 h-5 text-indigo-600" />
-                )}
-              </motion.button>
-            )}
+                )
+              ) : (
+                <div className="w-5 h-5" />
+              )}
+            </motion.button>
 
             <motion.a
               href="#contact"
@@ -104,20 +106,22 @@ export default function Navbar() {
 
           {/* Mobile menu button & theme toggle */}
           <div className="md:hidden flex items-center gap-2">
-            {mounted && (
-              <motion.button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {theme === "dark" ? (
+            <motion.button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-lg glass border border-border/50 hover:border-primary/50 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {mounted ? (
+                theme === "dark" ? (
                   <Sun className="w-5 h-5 text-yellow-400" />
                 ) : (
                   <Moon className="w-5 h-5 text-indigo-600" />
-                )}
-              </motion.button>
-            )}
+                )
+              ) : (
+                <div className="w-5 h-5" />
+              )}
+            </motion.button>
 
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
