@@ -14,7 +14,7 @@ const LenisScroll = dynamic(() => import("@/components/lenis-scroll"), { ssr: fa
 
 export default function Home() {
   return (
-    <LenisScroll>
+    <>
       <Navbar />
       <HeroSection />
       <AboutSection />
@@ -26,6 +26,6 @@ export default function Home() {
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <GalaxyBackground />
       </div>
-    </LenisScroll>
+    </>
   )
 }
