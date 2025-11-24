@@ -7,6 +7,7 @@ import { Code2, Zap, Server } from "lucide-react"
 import DarkVeil from "./dark-veil"
 import TextType from "./text-type"
 import { FloatingElement } from "./floating-element"
+import ggImage from "@/app/assets/GG.png"
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -129,7 +130,7 @@ export default function HeroSection() {
                   <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative h-full w-full rounded-2xl overflow-hidden bg-black/40">
                     <Image
-                      src="/GG.png"
+                      src={ggImage}
                       alt="Arishan Maharjan"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
