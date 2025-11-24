@@ -1,14 +1,15 @@
 "use client"
 
 import type React from "react"
-
 import { useEffect } from "react"
 
 export default function LenisScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Import Lenis dynamically to avoid SSR issues
+    let lenis: any = null
+
     import("lenis").then(({ default: Lenis }) => {
-      const lenis = new Lenis({
+      lenis = new Lenis({
         duration: 1.0,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         touchMultiplier: 1.5,
@@ -21,11 +22,13 @@ export default function LenisScroll({ children }: { children: React.ReactNode })
       }
 
       requestAnimationFrame(raf)
+    })
 
-      return () => {
+    return () => {
+      if (lenis) {
         lenis.destroy()
       }
-    })
+    }
   }, [])
 
   return <>{children}</>
