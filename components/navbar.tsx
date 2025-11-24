@@ -33,17 +33,10 @@ export default function Navbar() {
     { href: "#contact", label: "Contact" },
   ]
 
-  // Create dynamic background color based on theme and scroll
-  const navBg = theme === 'dark'
-    ? 'rgba(3, 0, 20, 0.95)'
-    : 'rgba(255, 255, 255, 0.95)'
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 transition-all duration-300 backdrop-blur-xl"
-      style={{
-        backgroundColor: navBg,
-      }}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 transition-all duration-300 backdrop-blur-xl bg-background/95"
       initial={{ opacity: 0.8 }}
       animate={{ opacity: 1 }}
     >
