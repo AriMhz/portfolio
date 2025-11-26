@@ -43,7 +43,7 @@ export default function HeroSection() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="space-y-4 sm:space-y-6">
-              <motion.div custom={0} variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
+              <motion.div custom={0} variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
                 <div className="inline-block px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
                   Available for work
                 </div>
@@ -58,7 +58,7 @@ export default function HeroSection() {
                 </h1>
               </motion.div>
 
-              <motion.div custom={1} variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
+              <motion.div custom={1} variants={textVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-muted-foreground">
                   <span className="text-foreground">Full-Stack Developer</span> & UI Designer
                 </h2>
@@ -69,7 +69,7 @@ export default function HeroSection() {
                 variants={textVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
                 className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed"
               >
                 Crafting exceptional digital experiences with modern technologies.
@@ -86,7 +86,7 @@ export default function HeroSection() {
               variants={textVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <motion.a
                 href="#contact"
@@ -117,7 +117,8 @@ export default function HeroSection() {
           <motion.div
             className="relative h-[500px] hidden lg:block"
             initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-[100px] opacity-50"></div>

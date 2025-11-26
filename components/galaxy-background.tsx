@@ -2,12 +2,17 @@
 
 import { useEffect, useRef } from "react"
 import { useTheme } from "next-themes"
+import { useIsMobile } from "@/hooks/use-media-query"
 
 export default function GalaxyBackground() {
   const containerRef = useRef<HTMLCanvasElement>(null)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const isMobile = useIsMobile()
 
   useEffect(() => {
+    // Skip canvas animation on mobile - use CSS gradient instead
+    if (isMobile) return
+
     const canvas = containerRef.current
     if (!canvas) return
 
@@ -31,7 +36,7 @@ export default function GalaxyBackground() {
       lastTime = currentTime - (elapsed % fpsInterval)
       const time = currentTime * 0.0001
 
-      if (theme === 'light') {
+      if (resolvedTheme === 'light') {
         // Light mode: Soft gradient background
         ctx.fillStyle = "#ffffff"
         ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -117,7 +122,27 @@ export default function GalaxyBackground() {
       window.removeEventListener("resize", handleResize)
       cancelAnimationFrame(animationFrameId)
     }
-  }, [theme])
+  }, [resolvedTheme, isMobile])
 
-  return <canvas ref={containerRef} className="absolute inset-0 w-full h-full" style={{ willChange: 'transform' }} />
+  // On mobile, use static CSS gradient instead of canvas
+  if (isMobile) {
+    return (
+      <>
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${resolvedTheme === 'light' ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            background: 'linear-gradient(135deg, rgba(238, 242, 255, 0.8) 0%, rgba(224, 231, 255, 0.6) 50%, rgba(241, 245, 249, 0.7) 100%)'
+          }}
+        />
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${resolvedTheme === 'dark' ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            background: 'linear-gradient(135deg, rgba(0, 20, 40, 0.3) 0%, rgba(0, 40, 80, 0.2) 50%, rgba(99, 102, 241, 0.1) 100%)'
+          }}
+        />
+      </>
+    )
+  }
+
+  return <canvas ref={containerRef} className="absolute inset-0 w-full h-full" style={{ willChange: 'contents' }} />
 }

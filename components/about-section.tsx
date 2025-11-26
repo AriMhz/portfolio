@@ -78,7 +78,7 @@ export default function AboutSection() {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: false, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.3 }}
                         className="space-y-8 relative"
                     >
                         <div className="space-y-4">
@@ -120,7 +120,7 @@ export default function AboutSection() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 * i }}
-                                    viewport={{ once: false, amount: 0.3 }}
+                                    viewport={{ once: true, amount: 0.3 }}
                                 >
                                     {tag}
                                 </motion.span>

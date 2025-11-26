@@ -1,10 +1,13 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { motion, useInView } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
 
 export default function CodeEditor() {
     const [text, setText] = useState("")
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: false, amount: 0.3 })
+
     const fullText = `const developer = {
   name: "Arishan",
   role: "Full Stack Dev",
@@ -19,6 +22,9 @@ export default function CodeEditor() {
 };`
 
     useEffect(() => {
+        // Reset text when coming into view
+        setText("")
+
         let currentIndex = 0
         const interval = setInterval(() => {
             if (currentIndex <= fullText.length) {
@@ -30,7 +36,7 @@ export default function CodeEditor() {
         }, 30)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [isInView])
 
     // Simple syntax highlighting helper
     const highlightSyntax = (code: string) => {
@@ -44,7 +50,7 @@ export default function CodeEditor() {
     }
 
     return (
-        <div className="w-full h-full bg-[#1e1e1e] rounded-xl overflow-hidden shadow-2xl border border-white/10 font-mono text-xs sm:text-sm relative group">
+        <div ref={ref} className="w-full h-full bg-[#1e1e1e] rounded-xl overflow-hidden shadow-2xl border border-white/10 font-mono text-xs sm:text-sm relative group">
             {/* Window Controls */}
             <div className="h-8 bg-[#252526] flex items-center px-4 gap-2 border-b border-white/5">
                 <div className="w-3 h-3 rounded-full bg-red-500/80"></div>

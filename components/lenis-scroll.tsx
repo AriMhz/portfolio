@@ -5,6 +5,10 @@ import { useEffect } from "react"
 
 export default function LenisScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Disable Lenis on mobile devices for better performance
+    const isMobile = window.matchMedia("(max-width: 768px)").matches
+    if (isMobile) return
+
     // Import Lenis dynamically to avoid SSR issues
     let lenis: any = null
 
